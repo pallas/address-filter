@@ -12,7 +12,7 @@ endif
 all: $(PROGS)
 
 test: $(PROGS)
-	cat test.in | ./address-filter | diff - test.out
+	cat test.in | ./address-filter | tee test.got | diff - test.out
 
 $(PROGS) : LDFLAGS += -lstdc++
 $(PROGS) : CXXFLAGS += $(DEBUG) -MD -MP
