@@ -22,3 +22,6 @@ add_test(NAME basic COMMAND sh -c "
 	tee ${CMAKE_SOURCE_DIR}/test.got |
 	diff - ${CMAKE_SOURCE_DIR}/test.out
 ")
+build_command(CTEST_CUSTOM_PRE_TEST TARGET address-filter)
+string(CONFIGURE \"@CTEST_CUSTOM_PRE_TEST@\" CTEST_CUSTOM_PRE_TEST_QUOTED ESCAPE_QUOTES)
+file(WRITE "${CMAKE_BINARY_DIR}/CTestCustom.cmake" "set(CTEST_CUSTOM_PRE_TEST ${CTEST_CUSTOM_PRE_TEST_QUOTED})" "\n")
